@@ -1,0 +1,11 @@
+# No subir a Vercel: claves, servidor, respaldos ni datos de postulantes
+.env
+.env.*
+!.env.example
+server.js
+node_modules
+postulaciones
+content/backups
+_respaldo*
+.claude
+admin

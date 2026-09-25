@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Editor de Contenido | Subway Chile</title>
+<link rel="stylesheet" href="https://unpkg.com/grapesjs@0.21.13/dist/css/grapes.min.css">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<header class="admin-topbar">
+  <div class="admin-topbar__brand">
+    <img src="/assets/logo/subway-logo-secondary-yellow-green.png" alt="Subway" height="26">
+    <span id="topbarTitle">Editor de Contenido — Página de Inicio</span>
+  </div>
+  <div class="admin-topbar__actions">
+    <span id="statusMsg" class="admin-status"></span>
+    <a href="/index.html" target="_blank" class="admin-btn admin-btn--ghost">Ver sitio</a>
+    <button id="saveBtn" class="admin-btn admin-btn--primary">Guardar y Publicar</button>
+  </div>
+</header>
+
+<nav class="admin-tabs">
+  <button class="admin-tab is-active" data-tab="home">Página de Inicio</button>
+  <button class="admin-tab" data-tab="footer">Pie de Página</button>
+</nav>
+
+<section id="tabHome" class="admin-tab-panel">
+  <div class="admin-help">
+    Arrastra un bloque desde la izquierda hacia la sección correspondiente (Banner, Promociones o Avisos).
+    Haz clic sobre una tarjeta ya puesta para editar su texto y su link en el panel de la derecha — igual que al armar una plantilla de correo.
+  </div>
+
+  <div class="admin-layout">
+    <aside class="admin-panel admin-panel--left">
+      <div class="admin-panel__title">Bloques disponibles</div>
+      <div id="blocks"></div>
+      <div class="admin-panel__title admin-panel__title--spaced">Estructura de la página</div>
+      <div id="layers"></div>
+    </aside>
+
+    <main class="admin-canvas-wrap">
+      <div id="gjs"></div>
+    </main>
+
+    <aside class="admin-panel admin-panel--right">
+      <div class="admin-panel__title">Editar bloque seleccionado</div>
+      <div class="admin-panel__hint">Haz clic en una diapositiva, tarjeta o banner del centro para ver aquí sus campos.</div>
+      <div id="traits"></div>
+    </aside>
+  </div>
+</section>
+
+<section id="tabFooter" class="admin-tab-panel" hidden>
+  <div class="admin-help">
+    Estos son los links que aparecen al final de todas las páginas del sitio (Conócenos, Compromiso, Negocio y la fila legal).
+    Puedes cambiar el texto o el link de cualquiera, borrarlos, o agregar nuevos.
+  </div>
+  <div class="admin-footer-editor" id="footerEditor"></div>
+</section>
+
+<script src="https://unpkg.com/grapesjs@0.21.13/dist/grapes.min.js"></script>
+<script src="/js/templates.js"></script>
+<script src="admin.js"></script>
+<script src="admin-footer.js"></script>
+</body>
+</html>

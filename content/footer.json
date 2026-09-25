@@ -1,0 +1,60 @@
+{
+  "columns": [
+    {
+      "id": "col-1",
+      "title": "Conócenos",
+      "links": [
+        {
+          "text": "Noticias",
+          "href": "https://newsroom.subway.com/"
+        },
+        {
+          "text": "Contáctanos",
+          "href": "https://subway.service-now.com/guest_csp?lang=es&country=CL"
+        }
+      ]
+    },
+    {
+      "id": "col-2",
+      "title": "Compromiso",
+      "links": [
+        {
+          "text": "Bienestar",
+          "href": "https://www.subway.com/es-cl/sustainability/well-being/quality-and-food-safety"
+        },
+        {
+          "text": "Nuestro Planeta",
+          "href": "https://www.subway.com/es-cl/sustainability/preserve-our-planet/packaging-sustainability"
+        }
+      ]
+    },
+    {
+      "id": "col-3",
+      "title": "Negocio",
+      "links": [
+        {
+          "text": "Abre tu Franquicia",
+          "href": "https://www.subwayfranchise.com/es-us/contact-us"
+        },
+        {
+          "text": "Partners: The Feed",
+          "href": "https://thefeed.subway.com/"
+        },
+        {
+          "text": "Empleos",
+          "href": "trabaja-con-nosotros.html"
+        }
+      ]
+    }
+  ],
+  "legal": [
+    {
+      "text": "Privacidad",
+      "href": "privacidad.html"
+    },
+    {
+      "text": "Configuración de Cookies y Anuncios",
+      "href": "#cookie-settings"
+    }
+  ]
+}

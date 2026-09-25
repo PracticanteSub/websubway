@@ -1,0 +1,40 @@
+/* Se carga SOLO dentro del iframe del canvas de GrapesJS (no afecta el sitio
+   público). Ajusta el carrusel del hero para que, en el editor, las
+   diapositivas se vean apiladas una debajo de otra en vez de superpuestas
+   (como hace el carrusel real en el sitio). */
+html, body { margin: 0; min-width: 1100px; }
+
+.admin-zone-label {
+  font: 700 12px/1.4 "Segoe UI", sans-serif;
+  color: #028940; background: #f4fbf6;
+  border: 1px dashed #028940; border-radius: 6px;
+  padding: 10px 14px; margin: 18px 12px 8px;
+}
+.admin-zone {
+  outline: 2px dashed #d5d5d5; outline-offset: 4px;
+  min-height: 70px; padding: 14px; margin: 0 12px 18px;
+  border-radius: 8px;
+}
+
+.hero-slide {
+  position: static !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  margin-bottom: 16px;
+  box-shadow: 0 0 0 1px #eee;
+  min-height: 260px;
+  /* El canvas del editor suele ser más angosto que 960px, lo que activaba
+     el CSS responsive (una sola columna, alturas "1fr" sin límite) y hacía
+     que cada diapositiva se viera enorme. Forzamos siempre el layout de
+     escritorio (2 columnas) dentro del editor, sin importar el ancho real
+     del lienzo; el sitio público sigue usando el responsive real. */
+  grid-template-columns: 1.1fr .9fr !important;
+  grid-template-rows: none !important;
+}
+.hero-media { min-height: 200px; }
+
+.promo-track.admin-zone {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+}
+.promo-card { min-height: 0; }
