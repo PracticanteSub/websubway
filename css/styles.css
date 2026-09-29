@@ -458,3 +458,15 @@ a { color: inherit; text-decoration: none; }
 .hero-dots .hero-play { width: 28px; height: 28px; border-radius: 50%; border: 0; background: #fff; color: #111; box-shadow: var(--shadow); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; margin-left: 8px; padding: 0; }
 .hero-dots .hero-play:hover { background: var(--sub-yellow); }
 .hero-dots .hero-play:focus-visible { outline: 2px solid var(--sub-green); outline-offset: 2px; }
+
+/* Franquicias */
+.fr-profile { padding: 56px 0 8px; }
+.fr-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 32px; }
+.fr-card { background: #f4f4f4; border-radius: 12px; padding: 24px; border-top: 5px solid var(--sub-yellow); }
+.fr-card h3 { margin: 0 0 8px; font-size: 1.15rem; }
+.fr-card p { margin: 0; color: #444; line-height: 1.5; }
+.fr-steps { padding-left: 20px; line-height: 1.7; }
+.jobs-form h2 { margin: 0; font-size: 1.5rem; }
+.jobs-form small { font-weight: 400; color: #666; }
+@media (max-width: 900px) { .fr-cards { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .fr-cards { grid-template-columns: 1fr; } }

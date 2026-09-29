@@ -1,7 +1,7 @@
 {
   "builds": [{ "src": "**/*", "use": "@vercel/static" }],
   "routes": [
-    { "src": "/(server\\.js|package(-lock)?\\.json|\\.env.*|README.*|postulaciones/.*|solicitudes-privacidad/.*|content/backups/.*|_respaldo.*|node_modules/.*|admin/.*)", "status": 404 },
+    { "src": "/(server\\.js|package(-lock)?\\.json|\\.env.*|README.*|formularios/.*|postulaciones/.*|solicitudes-privacidad/.*|content/backups/.*|_respaldo.*|node_modules/.*|admin/.*)", "status": 404 },
     { "src": "/", "dest": "/index.html" }
   ]
 }

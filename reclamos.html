@@ -3,22 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Subway Chile | Subs frescos, hechos a tu gusto</title>
-<meta name="description" content="Descubre las promociones, combos y el Subway más cercano a ti. Pide tu Sub favorito para retiro, delivery o en el local.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<title>Reclamos y Sugerencias | Subway Chile</title>
+<meta name="description" content="Envía un reclamo, felicitación o sugerencia sobre un restaurante Subway en Chile.">
 <link rel="stylesheet" href="css/styles.css">
 <link rel="stylesheet" href="css/cookies.css">
 </head>
 <body>
 
-<!-- ===================== HEADER ===================== -->
-<!-- Estructura real de subway.com/es-cl: logo + 2 links + CTA. Se agrega "Menú" para enlazar al widget NerdMonster. -->
 <header class="site-header" id="siteHeader">
   <div class="container header-inner">
     <a href="index.html" class="logo" aria-label="Subway Chile - Inicio">
       <img src="assets/logo/subway-logo-secondary-yellow-green.png" alt="Subway">
     </a>
-
     <div class="header-actions">
       <a class="btn btn-primary" href="https://restaurantes.subway.com/chile" target="_blank" rel="noopener">Buscar un Subway</a>
       <a class="btn btn-outline" href="franquicias.html">Abre tu Franquicia</a>
@@ -27,49 +23,90 @@
 </header>
 
 <main>
-
-  <!-- =====================================================================
-       Contenido dinámico: hero, promociones y banners CTA se cargan desde
-       /api/content/home (editable en /admin, ver js/site-render.js).
-  ===================================================================== -->
-
-  <!-- ===================== HERO CAROUSEL ===================== -->
-  <section class="hero" id="hero" aria-label="Promociones destacadas">
-    <div class="hero-track" id="heroTrack"></div>
-    <button class="hero-arrow hero-arrow--prev" id="heroPrev" aria-label="Anterior">&#10094;</button>
-    <button class="hero-arrow hero-arrow--next" id="heroNext" aria-label="Siguiente">&#10095;</button>
-    <div class="hero-dots" id="heroDots"></div>
-  </section>
-
-  <!-- ===================== PROMOCIONES ===================== -->
-  <section class="promos" id="promos">
+  <section class="page-banner">
     <div class="container">
-      <h2 class="section-title section-title--44" id="promosTitle">Promociones y Ofertas</h2>
-      <div class="promo-carousel">
-        <button class="promo-arrow promo-arrow--prev" id="promoPrev" aria-label="Anterior">&#10094;</button>
-        <div class="promo-track" id="promoTrack"></div>
-        <button class="promo-arrow promo-arrow--next" id="promoNext" aria-label="Siguiente">&#10095;</button>
-      </div>
+      <h1>Reclamos y Sugerencias</h1>
+      <p>¿Tuviste un problema en uno de nuestros restaurantes? Cuéntanos para poder solucionarlo.</p>
     </div>
   </section>
 
-  <!-- ===================== CTA DELIVERY / BANNERS ===================== -->
-  <div id="ctaBannersMount"></div>
+  <section class="jobs-page">
+    <div class="container jobs-inner">
+      <form class="jobs-form" data-form="reclamos" novalidate>
+        <div class="jobs-grid">
+          <label>Nombre completo*
+            <input type="text" name="nombre" required autocomplete="name" maxlength="120">
+          </label>
+          <label>Correo electrónico*
+            <input type="email" name="email" required autocomplete="email" maxlength="120">
+          </label>
+          <label>Teléfono (opcional)
+            <input type="tel" name="telefono" autocomplete="tel" maxlength="20">
+          </label>
+          <label>Número del restaurante*
+            <input type="text" name="restaurante" required inputmode="numeric" pattern="[0-9]{3,6}" maxlength="6" placeholder="Ej: 12345">
+            <small>Lo encuentras en tu boleta.</small>
+          </label>
+          <label>Comuna o dirección del restaurante (opcional)
+            <input type="text" name="ubicacion" maxlength="120" placeholder="Si no tienes el número, ayúdanos con esto">
+          </label>
+          <label>Fecha de la visita*
+            <input type="date" name="fecha_visita" required>
+          </label>
+          <label>Tipo*
+            <select name="tipo" required>
+              <option value="">Selecciona una opción</option>
+              <option>Calidad del producto</option>
+              <option>Atención del personal</option>
+              <option>Tiempo de espera</option>
+              <option>Limpieza del local</option>
+              <option>Precio o cobro</option>
+              <option>Pedido por delivery</option>
+              <option>Felicitación</option>
+              <option>Sugerencia</option>
+              <option>Otro</option>
+            </select>
+          </label>
+          <label>Canal de compra*
+            <select name="canal" required>
+              <option value="">Selecciona una opción</option>
+              <option>En el local</option>
+              <option>Para llevar</option>
+              <option>Uber Eats</option>
+              <option>PedidosYa</option>
+              <option>Rappi</option>
+            </select>
+          </label>
+        </div>
+        <label>Cuéntanos qué pasó*
+          <textarea name="mensaje" rows="5" required maxlength="2000"></textarea>
+        </label>
+        <label class="jobs-check">
+          <input type="checkbox" name="consentimiento" required>
+          <span>Acepto que Subway Chile use mis datos para gestionar mi reclamo, según la <a href="privacidad.html" target="_blank">Política de Privacidad</a>.*</span>
+        </label>
+        <p class="jobs-msg" role="status" aria-live="polite"></p>
+        <button type="submit" class="btn btn-primary btn-lg">Enviar</button>
+      </form>
 
+      <aside class="jobs-alt">
+        <h2>¿Dónde está el número del restaurante?</h2>
+        <p>Cada restaurante Subway® en Chile tiene un número único. Aparece en tu boleta, normalmente arriba, junto al nombre del local.</p>
+        <p>Si compraste por delivery, el reclamo sobre el despacho también puedes hacerlo en la app que usaste.</p>
+      </aside>
+    </div>
+  </section>
 </main>
 
-<!-- ===================== FOOTER ===================== -->
 <footer class="site-footer">
   <div class="container footer-grid">
-
     <div id="footerColumnsMount" class="footer-columns-mount"></div>
-
     <div class="footer-col footer-col--brand">
       <span class="logo logo--footer">
         <img src="assets/logo/subway-logo-primary-yellow-white.png" alt="Subway">
       </span>
-      <label for="countrySelect" class="sr-only">País</label>
-      <select id="countrySelect" class="country-select">
+      <label for="countrySelect2" class="sr-only">País</label>
+      <select id="countrySelect2" class="country-select">
         <option value="/es-cl/" selected>Español</option>
         <option value="/en-us/">English</option>
         <option value="/pt-br/">Português</option>
@@ -89,31 +126,18 @@
         </a>
       </div>
     </div>
-
   </div>
-
   <div class="container footer-legal" id="footerLegalMount"></div>
-
   <div class="container footer-bottom">
     <p>Subway&reg; es una marca comercial registrada a nivel mundial de Subway IP LLC o una de sus filiales. &copy; 2023 &ndash; 2026 Subway. Todos los derechos reservados.</p>
   </div>
 </footer>
 
-<!-- ===================== MODAL TÉRMINOS Y CONDICIONES ===================== -->
-<div class="tc-modal" id="tcModal" hidden>
-  <div class="tc-modal__backdrop" data-tc-close></div>
-  <div class="tc-modal__panel" role="dialog" aria-modal="true" aria-labelledby="tcModalTitle">
-    <button class="tc-modal__close" data-tc-close aria-label="Cerrar">&times;</button>
-    <h3 id="tcModalTitle" class="sr-only">Términos y Condiciones</h3>
-    <p class="tc-modal__text" id="tcModalText"></p>
-  </div>
-</div>
-
 <script src="js/content-data.js"></script>
 <script src="js/templates.js"></script>
 <script src="js/main.js"></script>
-<script src="js/site-render.js"></script>
 <script src="js/footer-render.js"></script>
+<script src="js/forms.js"></script>
 <script src="js/i18n.js"></script>
 <script src="js/cookies.js"></script>
 </body>

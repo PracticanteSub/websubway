@@ -25,7 +25,7 @@
     if (!validRut(String(d.get('rut')))) return show('El RUT no es válido. Revisa el número y el dígito verificador.');
     if (!form.email.checkValidity()) return show('El correo electrónico no es válido.');
     if (!d.get('consentimiento')) return show('Debes marcar la declaración para enviar la solicitud.');
-    if (location.protocol === 'file:') return show('Para enviar el formulario el sitio debe estar publicado. Mientras tanto, escribe a legal@subwaychile.cl.');
+    if (location.protocol === 'file:') return show('Para enviar el formulario el sitio debe estar publicado. Mientras tanto, escribe a cusser@subwaychile.cl.');
 
     btn.disabled = true;
     show('Enviando…', true);
@@ -42,7 +42,7 @@
       form.reset();
       show('Recibimos tu solicitud. Te responderemos al correo que indicaste dentro de los plazos legales.', true);
     } catch (err) {
-      show('No pudimos enviar tu solicitud. Inténtalo de nuevo o escríbenos a legal@subwaychile.cl.');
+      show('No pudimos enviar tu solicitud. Inténtalo de nuevo o escríbenos a cusser@subwaychile.cl.');
     } finally {
       btn.disabled = false;
     }

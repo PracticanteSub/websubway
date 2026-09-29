@@ -54,6 +54,7 @@
     'Empleos': ['Careers', 'Empregos'],
     'Negocio': ['Business', 'Negócios'],
     'Acerca de Subway®': ['About Subway®', 'Sobre a Subway®'],
+    'Reclamos y Sugerencias': ['Complaints & Suggestions', 'Reclamações e Sugestões'],
     'Centro de Privacidad': ['Privacy Center', 'Central de Privacidade'],
     'Privacidad': ['Privacy', 'Privacidade'],
     'Términos de Uso': ['Terms of Use', 'Termos de Uso'],

@@ -19,7 +19,7 @@ const auth = basicAuth({
 });
 
 // --- Archivos internos que NUNCA deben verse desde internet ---
-const PRIVATE = [/^\/postulaciones/i, /^\/solicitudes-privacidad/i, /^\/content\/backups/i, /^\/_respaldo/i, /^\/node_modules/i, /^\/\.env/i, /^\/server\.js$/i, /^\/package(-lock)?\.json$/i, /^\/README/i, /^\/\.git/i, /^\/\.claude/i];
+const PRIVATE = [/^\/formularios/i, /^\/postulaciones/i, /^\/solicitudes-privacidad/i, /^\/content\/backups/i, /^\/_respaldo/i, /^\/node_modules/i, /^\/\.env/i, /^\/server\.js$/i, /^\/package(-lock)?\.json$/i, /^\/README/i, /^\/\.git/i, /^\/\.claude/i];
 app.use((req, res, next) => (PRIVATE.some((r) => r.test(req.path)) ? res.status(404).end() : next()));
 
 // --- Postulaciones "Trabaja con Nosotros" ---
@@ -63,6 +63,27 @@ app.post('/api/solicitudes-privacidad', express.json({ limit: '50kb' }), (req, r
   fs.mkdirSync(PRIV_DIR, { recursive: true });
   const id = `${data.fecha.replace(/[:.]/g, '-')}-${Math.random().toString(36).slice(2, 8)}`;
   fs.writeFileSync(path.join(PRIV_DIR, `${id}.json`), JSON.stringify(data, null, 2));
+  res.json({ ok: true });
+});
+
+// --- Formularios genéricos (franquicias, reclamos) ---
+const FORMS = {
+  franquicias: { titulo: 'Interesados en franquicias', campos: ['nombre', 'rut', 'email', 'telefono', 'region', 'comuna', 'capital', 'experiencia', 'local', 'cantidad', 'mensaje'], requeridos: ['nombre', 'rut', 'email', 'telefono', 'region', 'comuna', 'capital', 'experiencia'] },
+  reclamos: { titulo: 'Reclamos y sugerencias', campos: ['restaurante', 'nombre', 'email', 'telefono', 'ubicacion', 'fecha_visita', 'tipo', 'canal', 'mensaje'], requeridos: ['restaurante', 'nombre', 'email', 'fecha_visita', 'tipo', 'canal', 'mensaje'] },
+};
+const FORMS_DIR = path.join(__dirname, 'formularios');
+app.post('/api/formularios/:tipo', express.json({ limit: '50kb' }), (req, res) => {
+  const cfg = FORMS[req.params.tipo];
+  if (!cfg) return res.status(404).json({ error: 'Formulario no encontrado' });
+  const b = req.body || {};
+  const data = { fecha: new Date().toISOString() };
+  cfg.campos.forEach((k) => { data[k] = clip(b[k], k === 'mensaje' ? 2000 : 120); });
+  if (cfg.requeridos.some((k) => !data[k]) || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(data.email) || b.consentimiento !== true) {
+    return res.status(400).json({ error: 'Datos incompletos' });
+  }
+  const dir = path.join(FORMS_DIR, req.params.tipo);
+  fs.mkdirSync(dir, { recursive: true });
+  fs.writeFileSync(path.join(dir, `${data.fecha.replace(/[:.]/g, '-')}-${Math.random().toString(36).slice(2, 8)}.json`), JSON.stringify(data, null, 2));
   res.json({ ok: true });
 });
 
@@ -139,6 +160,22 @@ app.get('/admin/solicitudes-privacidad', auth, (req, res) => {
 <style>body{font-family:Arial,sans-serif;margin:24px;color:#222}table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid #ddd;padding:8px;text-align:left;vertical-align:top}th{background:#008938;color:#fff}tr:nth-child(even){background:#f6f6f6}a{color:#008938}</style>
 <h1>Solicitudes de privacidad (${files.length})</h1><p><a href="/admin/">← Volver al panel</a></p>
 <table><tr><th>Fecha (UTC)</th><th>Nombre</th><th>RUT</th><th>Correo</th><th>Teléfono</th><th>Solicitud</th><th>Detalle</th></tr>${rows || '<tr><td colspan="7">Aún no hay solicitudes.</td></tr>'}</table></html>`);
+});
+
+app.get('/admin/formularios/:tipo', auth, (req, res) => {
+  const cfg = FORMS[req.params.tipo];
+  if (!cfg) return res.status(404).end();
+  const dir = path.join(FORMS_DIR, req.params.tipo);
+  const files = fs.existsSync(dir) ? fs.readdirSync(dir).filter((f) => f.endsWith('.json')).sort().reverse() : [];
+  const cols = ['fecha', ...cfg.campos];
+  const rows = files.map((f) => {
+    const d = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8'));
+    return '<tr>' + cols.map((c) => `<td>${esc(c === 'fecha' ? d.fecha.slice(0, 16).replace('T', ' ') : d[c])}</td>`).join('') + '</tr>';
+  }).join('');
+  res.set('Cache-Control', 'no-store').send(`<!doctype html><html lang="es"><meta charset="utf-8"><title>${esc(cfg.titulo)} | Subway Chile</title>
+<style>body{font-family:Arial,sans-serif;margin:24px;color:#222}table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid #ddd;padding:8px;text-align:left;vertical-align:top}th{background:#008938;color:#fff;text-transform:capitalize}tr:nth-child(even){background:#f6f6f6}a{color:#008938}</style>
+<h1>${esc(cfg.titulo)} (${files.length})</h1><p><a href="/admin/">← Volver al panel</a></p>
+<table><tr>${cols.map((c) => `<th>${esc(c.replace('_', ' '))}</th>`).join('')}</tr>${rows || `<tr><td colspan="${cols.length}">Aún no hay registros.</td></tr>`}</table></html>`);
 });
 
 // --- Panel de administración (protegido) ---

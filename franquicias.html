@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Centro de Privacidad | Subway Chile</title>
-<meta name="description" content="Ejerce tus derechos de acceso, rectificación, supresión y oposición sobre tus datos personales.">
+<title>Abre tu Franquicia | Subway Chile</title>
+<meta name="description" content="Conviértete en franquiciado Subway en Chile: requisitos y formulario de contacto.">
 <link rel="stylesheet" href="css/styles.css">
 <link rel="stylesheet" href="css/cookies.css">
 </head>
@@ -25,61 +25,113 @@
 <main>
   <section class="page-banner">
     <div class="container">
-      <h1>Centro de Privacidad</h1>
-      <p>Ejerce tus derechos sobre tus datos personales.</p>
+      <h1>Abre tu Franquicia Subway® en Chile</h1>
+      <p>¿Quieres ser parte de una de las marcas de restaurantes más reconocidas del mundo? Cuéntanos sobre ti y te contactaremos.</p>
     </div>
   </section>
 
-  <section class="jobs-page">
+  <section class="fr-profile">
+    <div class="container">
+      <h2 class="section-title">¿Buscamos a alguien como tú?</h2>
+      <div class="fr-cards">
+        <article class="fr-card">
+          <h3>Experiencia</h3>
+          <p>Valoramos la experiencia en gestión de negocios, idealmente en retail o restaurantes, y la capacidad de liderar equipos y operar más de un local.</p>
+        </article>
+        <article class="fr-card">
+          <h3>Crecimiento</h3>
+          <p>Hay comunas y ciudades de Chile donde todavía no estamos. Buscamos socios que quieran crecer con nosotros en nuevas ubicaciones.</p>
+        </article>
+        <article class="fr-card">
+          <h3>Valores compartidos</h3>
+          <p>Personas comprometidas con la calidad, el servicio al cliente y el cuidado de sus equipos y comunidades.</p>
+        </article>
+        <article class="fr-card">
+          <h3>Capacidad de inversión</h3>
+          <p>Abrir un restaurante requiere una inversión inicial y capital de trabajo. En la primera conversación te explicamos los montos y requisitos.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="jobs-page" id="formulario">
     <div class="container jobs-inner">
-      <form class="jobs-form" id="privForm" novalidate>
-        <p>Usa este formulario para pedir acceso, corrección o eliminación de tus datos personales, u oponerte a su uso. Responderemos dentro de los plazos que establece la ley. Más información en nuestra <a href="privacidad.html">Política de Privacidad</a>.</p>
+      <form class="jobs-form" data-form="franquicias" novalidate>
+        <h2>Déjanos tus datos</h2>
         <div class="jobs-grid">
           <label>Nombre completo*
             <input type="text" name="nombre" required autocomplete="name" maxlength="120">
           </label>
           <label>RUT*
-            <input type="text" name="rut" required placeholder="12.345.678-9" maxlength="12">
+            <input type="text" name="rut" required data-rut placeholder="12.345.678-9" maxlength="12">
           </label>
           <label>Correo electrónico*
             <input type="email" name="email" required autocomplete="email" maxlength="120">
           </label>
-          <label>Teléfono (opcional)
-            <input type="tel" name="telefono" autocomplete="tel" maxlength="20">
+          <label>Teléfono*
+            <input type="tel" name="telefono" required autocomplete="tel" placeholder="+56 9 1234 5678" maxlength="20">
+          </label>
+          <label>Región de interés*
+            <select name="region" required data-regiones></select>
+          </label>
+          <label>Comuna o ciudad de interés*
+            <input type="text" name="comuna" required maxlength="60">
+          </label>
+          <label>Capital disponible para invertir*
+            <select name="capital" required>
+              <option value="">Selecciona un rango</option>
+              <option>Menos de $100 millones</option>
+              <option>Entre $100 y $200 millones</option>
+              <option>Entre $200 y $400 millones</option>
+              <option>Más de $400 millones</option>
+              <option>Prefiero conversarlo</option>
+            </select>
+          </label>
+          <label>¿Tienes experiencia en restaurantes o retail?*
+            <select name="experiencia" required>
+              <option value="">Selecciona una opción</option>
+              <option>Sí, tengo o tuve un negocio de este tipo</option>
+              <option>Sí, como trabajador o administrador</option>
+              <option>No, pero tengo experiencia en otros negocios</option>
+              <option>No</option>
+            </select>
+          </label>
+          <label>¿Tienes un local o ubicación en mente?
+            <select name="local">
+              <option value="">Selecciona una opción</option>
+              <option>Sí, ya tengo un local</option>
+              <option>Tengo una ubicación en mente</option>
+              <option>No, busco asesoría</option>
+            </select>
+          </label>
+          <label>¿Cuántos restaurantes te gustaría abrir?
+            <select name="cantidad">
+              <option value="">Selecciona una opción</option>
+              <option>1</option>
+              <option>2 a 3</option>
+              <option>4 o más</option>
+            </select>
           </label>
         </div>
-
-        <label>¿Qué quieres solicitar?*
-          <select name="tipo" required>
-            <option value="">Selecciona una opción</option>
-            <option>Acceso: saber qué datos míos tienen</option>
-            <option>Rectificación: corregir datos incorrectos</option>
-            <option>Supresión: eliminar mis datos</option>
-            <option>Oposición: que dejen de usar mis datos</option>
-            <option>Portabilidad: recibir mis datos en un formato reutilizable</option>
-            <option>Bloqueo: suspender temporalmente el uso de mis datos</option>
-            <option>Retirar un consentimiento</option>
-            <option>Otra consulta de privacidad</option>
-          </select>
+        <label>Cuéntanos más (opcional)
+          <textarea name="mensaje" rows="4" maxlength="2000"></textarea>
         </label>
-
-        <label>Detalle de tu solicitud*
-          <textarea name="mensaje" rows="5" required maxlength="2000" placeholder="Cuéntanos qué datos o qué situación quieres revisar."></textarea>
-        </label>
-
         <label class="jobs-check">
           <input type="checkbox" name="consentimiento" required>
-          <span>Declaro que soy el titular de los datos o su representante, y acepto que usen esta información solo para responder mi solicitud.*</span>
+          <span>Acepto que Subway Chile use mis datos para evaluar mi interés como franquiciado, según la <a href="privacidad.html" target="_blank">Política de Privacidad</a>.*</span>
         </label>
-
-        <p class="jobs-msg" id="privMsg" role="status" aria-live="polite"></p>
-        <button type="submit" class="btn btn-primary btn-lg" id="privSubmit">Enviar solicitud</button>
+        <p class="jobs-msg" role="status" aria-live="polite"></p>
+        <button type="submit" class="btn btn-primary btn-lg">Enviar</button>
       </form>
 
       <aside class="jobs-alt">
-        <h2>¿Prefieres escribirnos?</h2>
-        <p>Envía tu solicitud a <a href="mailto:cusser@subwaychile.cl?subject=Solicitud%20de%20privacidad">cusser@subwaychile.cl</a> indicando tu nombre, RUT, qué derecho quieres ejercer y un medio de contacto.</p>
-        <p>Para confirmar tu identidad, podríamos pedirte información adicional antes de responder.</p>
+        <h2>¿Qué pasa después?</h2>
+        <ol class="fr-steps">
+          <li>Revisamos tus datos.</li>
+          <li>Te contactamos para una primera conversación.</li>
+          <li>Evaluamos juntos la ubicación y la inversión.</li>
+          <li>Si todo calza, comienza el proceso de apertura.</li>
+        </ol>
       </aside>
     </div>
   </section>
@@ -124,7 +176,7 @@
 <script src="js/templates.js"></script>
 <script src="js/main.js"></script>
 <script src="js/footer-render.js"></script>
-<script src="js/privacidad-form.js"></script>
+<script src="js/forms.js"></script>
 <script src="js/i18n.js"></script>
 <script src="js/cookies.js"></script>
 </body>
