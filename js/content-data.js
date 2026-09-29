@@ -121,6 +121,10 @@ window.SUBWAY_CONTENT = {
         "title": "Conócenos",
         "links": [
           {
+            "text": "Acerca de Subway®",
+            "href": "acerca-de-subway.html"
+          },
+          {
             "text": "Noticias",
             "href": "https://newsroom.subway.com/"
           },
@@ -141,6 +145,10 @@ window.SUBWAY_CONTENT = {
           {
             "text": "Nuestro Planeta",
             "href": "https://www.subway.com/es-cl/sustainability/preserve-our-planet/packaging-sustainability"
+          },
+          {
+            "text": "Comunidades",
+            "href": "comunidades.html"
           }
         ]
       },
@@ -167,6 +175,10 @@ window.SUBWAY_CONTENT = {
       {
         "text": "Privacidad",
         "href": "privacidad.html"
+      },
+      {
+        "text": "Centro de Privacidad",
+        "href": "centro-de-privacidad.html"
       },
       {
         "text": "Configuración de Cookies y Anuncios",

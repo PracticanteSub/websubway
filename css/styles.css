@@ -452,3 +452,9 @@ a { color: inherit; text-decoration: none; }
 .jobs-alt { background: #f4f4f4; border-radius: 12px; padding: 24px; }
 .jobs-alt h2 { font-size: 1.2rem; margin: 0 0 8px; }
 @media (max-width: 800px) { .jobs-inner, .jobs-grid { grid-template-columns: 1fr; } }
+
+/* Botón pausar/reproducir del carrusel */
+.hero-dots { align-items: center; }
+.hero-dots .hero-play { width: 28px; height: 28px; border-radius: 50%; border: 0; background: #fff; color: #111; box-shadow: var(--shadow); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; margin-left: 8px; padding: 0; }
+.hero-dots .hero-play:hover { background: var(--sub-yellow); }
+.hero-dots .hero-play:focus-visible { outline: 2px solid var(--sub-green); outline-offset: 2px; }

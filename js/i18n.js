@@ -53,6 +53,8 @@
     'Comunidades': ['Communities', 'Comunidades'],
     'Empleos': ['Careers', 'Empregos'],
     'Negocio': ['Business', 'Negócios'],
+    'Acerca de Subway®': ['About Subway®', 'Sobre a Subway®'],
+    'Centro de Privacidad': ['Privacy Center', 'Central de Privacidade'],
     'Privacidad': ['Privacy', 'Privacidade'],
     'Términos de Uso': ['Terms of Use', 'Termos de Uso'],
     'Accesibilidad': ['Accessibility', 'Acessibilidade'],

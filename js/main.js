@@ -56,6 +56,26 @@ window.initHeroCarousel = function initHeroCarousel() {
   });
   const dots = Array.from(dotsWrap.children);
 
+  // Botón pausar / reproducir
+  let paused = false;
+  const playBtn = document.createElement('button');
+  playBtn.type = 'button';
+  playBtn.className = 'hero-play';
+  function paintPlay() {
+    playBtn.innerHTML = paused
+      ? '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M7 4v16l13-8z"/></svg>'
+      : '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>';
+    playBtn.setAttribute('aria-label', paused ? 'Reproducir carrusel' : 'Pausar carrusel');
+    playBtn.setAttribute('aria-pressed', String(paused));
+  }
+  playBtn.addEventListener('click', () => {
+    paused = !paused;
+    paintPlay();
+    if (paused) clearInterval(timer); else restart();
+  });
+  paintPlay();
+  dotsWrap.appendChild(playBtn);
+
   function goTo(index) {
     slides[current].classList.remove('is-active');
     dots[current].classList.remove('is-active');
@@ -70,7 +90,7 @@ window.initHeroCarousel = function initHeroCarousel() {
 
   function restart() {
     clearInterval(timer);
-    timer = setInterval(next, 6000);
+    if (!paused) timer = setInterval(next, 6000);
   }
 
   nextBtn.addEventListener('click', next);

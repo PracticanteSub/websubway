@@ -19,7 +19,7 @@ const auth = basicAuth({
 });
 
 // --- Archivos internos que NUNCA deben verse desde internet ---
-const PRIVATE = [/^\/postulaciones/i, /^\/content\/backups/i, /^\/_respaldo/i, /^\/node_modules/i, /^\/\.env/i, /^\/server\.js$/i, /^\/package(-lock)?\.json$/i, /^\/README/i, /^\/\.git/i, /^\/\.claude/i];
+const PRIVATE = [/^\/postulaciones/i, /^\/solicitudes-privacidad/i, /^\/content\/backups/i, /^\/_respaldo/i, /^\/node_modules/i, /^\/\.env/i, /^\/server\.js$/i, /^\/package(-lock)?\.json$/i, /^\/README/i, /^\/\.git/i, /^\/\.claude/i];
 app.use((req, res, next) => (PRIVATE.some((r) => r.test(req.path)) ? res.status(404).end() : next()));
 
 // --- Postulaciones "Trabaja con Nosotros" ---
@@ -45,6 +45,24 @@ app.post('/api/postulaciones', express.json({ limit: '8mb' }), (req, res) => {
     fs.writeFileSync(path.join(POST_DIR, data.cv), buf);
   }
   fs.writeFileSync(path.join(POST_DIR, `${id}.json`), JSON.stringify(data, null, 2));
+  res.json({ ok: true });
+});
+
+// --- Solicitudes del Centro de Privacidad ---
+const PRIV_DIR = path.join(__dirname, 'solicitudes-privacidad');
+app.post('/api/solicitudes-privacidad', express.json({ limit: '50kb' }), (req, res) => {
+  const b = req.body || {};
+  const data = {
+    fecha: new Date().toISOString(),
+    nombre: clip(b.nombre, 120), rut: clip(b.rut, 12), email: clip(b.email, 120), telefono: clip(b.telefono, 20),
+    tipo: clip(b.tipo, 120), mensaje: clip(b.mensaje, 2000), consentimiento: b.consentimiento === true,
+  };
+  if (!data.nombre || !data.rut || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(data.email) || !data.tipo || !data.mensaje || !data.consentimiento) {
+    return res.status(400).json({ error: 'Datos incompletos' });
+  }
+  fs.mkdirSync(PRIV_DIR, { recursive: true });
+  const id = `${data.fecha.replace(/[:.]/g, '-')}-${Math.random().toString(36).slice(2, 8)}`;
+  fs.writeFileSync(path.join(PRIV_DIR, `${id}.json`), JSON.stringify(data, null, 2));
   res.json({ ok: true });
 });
 
@@ -109,6 +127,18 @@ app.get('/admin/postulaciones/cv/:file', auth, (req, res) => {
   const name = path.basename(req.params.file);
   if (!/^[\w-]+\.(pdf|docx?)$/i.test(name)) return res.status(404).end();
   res.download(path.join(POST_DIR, name));
+});
+
+app.get('/admin/solicitudes-privacidad', auth, (req, res) => {
+  const files = fs.existsSync(PRIV_DIR) ? fs.readdirSync(PRIV_DIR).filter((f) => f.endsWith('.json')).sort().reverse() : [];
+  const rows = files.map((f) => {
+    const d = JSON.parse(fs.readFileSync(path.join(PRIV_DIR, f), 'utf8'));
+    return `<tr><td>${esc(d.fecha.slice(0, 16).replace('T', ' '))}</td><td>${esc(d.nombre)}</td><td>${esc(d.rut)}</td><td><a href="mailto:${esc(d.email)}">${esc(d.email)}</a></td><td>${esc(d.telefono)}</td><td>${esc(d.tipo)}</td><td>${esc(d.mensaje)}</td></tr>`;
+  }).join('');
+  res.set('Cache-Control', 'no-store').send(`<!doctype html><html lang="es"><meta charset="utf-8"><title>Solicitudes de privacidad | Subway Chile</title>
+<style>body{font-family:Arial,sans-serif;margin:24px;color:#222}table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid #ddd;padding:8px;text-align:left;vertical-align:top}th{background:#008938;color:#fff}tr:nth-child(even){background:#f6f6f6}a{color:#008938}</style>
+<h1>Solicitudes de privacidad (${files.length})</h1><p><a href="/admin/">← Volver al panel</a></p>
+<table><tr><th>Fecha (UTC)</th><th>Nombre</th><th>RUT</th><th>Correo</th><th>Teléfono</th><th>Solicitud</th><th>Detalle</th></tr>${rows || '<tr><td colspan="7">Aún no hay solicitudes.</td></tr>'}</table></html>`);
 });
 
 // --- Panel de administración (protegido) ---
