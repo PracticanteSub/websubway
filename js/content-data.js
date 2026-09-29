@@ -130,11 +130,7 @@ window.SUBWAY_CONTENT = {
           },
           {
             "text": "Contáctanos",
-            "href": "https://subway.service-now.com/guest_csp?lang=es&country=CL"
-          },
-          {
-            "text": "Reclamos y Sugerencias",
-            "href": "reclamos.html"
+            "href": "contactanos.html"
           }
         ]
       },

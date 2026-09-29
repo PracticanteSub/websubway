@@ -69,7 +69,7 @@ app.post('/api/solicitudes-privacidad', express.json({ limit: '50kb' }), (req, r
 // --- Formularios genéricos (franquicias, reclamos) ---
 const FORMS = {
   franquicias: { titulo: 'Interesados en franquicias', campos: ['nombre', 'rut', 'email', 'telefono', 'region', 'comuna', 'capital', 'experiencia', 'local', 'cantidad', 'mensaje'], requeridos: ['nombre', 'rut', 'email', 'telefono', 'region', 'comuna', 'capital', 'experiencia'] },
-  reclamos: { titulo: 'Reclamos y sugerencias', campos: ['restaurante', 'nombre', 'email', 'telefono', 'ubicacion', 'fecha_visita', 'tipo', 'canal', 'mensaje'], requeridos: ['restaurante', 'nombre', 'email', 'fecha_visita', 'tipo', 'canal', 'mensaje'] },
+  reclamos: { titulo: 'Reclamos y sugerencias', campos: ['restaurante', 'restaurante_busqueda', 'nombre', 'email', 'telefono', 'ubicacion', 'fecha_visita', 'tipo', 'canal', 'mensaje'], requeridos: ['restaurante', 'nombre', 'email', 'fecha_visita', 'tipo', 'canal', 'mensaje'] },
 };
 const FORMS_DIR = path.join(__dirname, 'formularios');
 app.post('/api/formularios/:tipo', express.json({ limit: '50kb' }), (req, res) => {

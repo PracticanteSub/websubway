@@ -25,20 +25,14 @@
     if (!validRut(String(d.get('rut')))) return show('El RUT no es válido. Revisa el número y el dígito verificador.');
     if (!form.email.checkValidity()) return show('El correo electrónico no es válido.');
     if (!d.get('consentimiento')) return show('Debes marcar la declaración para enviar la solicitud.');
-    if (location.protocol === 'file:') return show('Para enviar el formulario el sitio debe estar publicado. Mientras tanto, escribe a cusser@subwaychile.cl.');
 
     btn.disabled = true;
     show('Enviando…', true);
     try {
-      const res = await fetch('/api/solicitudes-privacidad', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          nombre: d.get('nombre'), rut: d.get('rut'), email: d.get('email'), telefono: d.get('telefono') || '',
-          tipo: d.get('tipo'), mensaje: d.get('mensaje'), consentimiento: true,
-        }),
+      await window.SB.insert('solicitudes_privacidad', {
+        nombre: d.get('nombre'), rut: d.get('rut'), email: d.get('email'), telefono: d.get('telefono') || null,
+        tipo: d.get('tipo'), mensaje: d.get('mensaje'), consentimiento: true,
       });
-      if (!res.ok) throw new Error(res.status);
       form.reset();
       show('Recibimos tu solicitud. Te responderemos al correo que indicaste dentro de los plazos legales.', true);
     } catch (err) {

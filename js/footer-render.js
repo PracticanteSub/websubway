@@ -8,8 +8,9 @@
 
   const T = window.SubwayTemplates;
 
-  fetch('/api/content/footer')
-    .then((res) => { if (!res.ok) throw new Error(res.status); return res.json(); })
+  window.SB.select('contenido_sitio', 'select=datos&clave=eq.footer')
+    .then((rows) => { if (!rows.length) throw new Error('vacío'); return rows[0].datos; })
+    .catch(() => fetch('/api/content/footer').then((res) => { if (!res.ok) throw new Error(res.status); return res.json(); }))
     .catch(() => (window.SUBWAY_CONTENT || {}).footer || {})
     .then((data) => {
       if (columnsMount) {

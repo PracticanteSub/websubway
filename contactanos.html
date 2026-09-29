@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Comunidades | Subway Chile</title>
-<meta name="description" content="Cómo Subway Chile y sus franquiciados aportan a sus comunidades.">
+<title>Contáctanos | Subway Chile</title>
+<meta name="description" content="Contáctanos por WhatsApp o envía un reclamo, felicitación o sugerencia sobre un restaurante Subway en Chile.">
 <link rel="stylesheet" href="css/styles.css">
 <link rel="stylesheet" href="css/cookies.css">
 </head>
@@ -25,25 +25,91 @@
 <main>
   <section class="page-banner">
     <div class="container">
-      <h1>Comunidades</h1>
-      <p>Cada restaurante Subway® es parte del barrio donde está.</p>
+      <h1>Contáctanos</h1>
+      <p>¿Tienes una consulta, un reclamo o una sugerencia? Elige cómo quieres hablar con nosotros.</p>
     </div>
   </section>
 
-    <section class="legal-page">
-    <div class="container legal-body">
-      <p>Creemos que un buen restaurante hace más que servir comida: genera empleo, trabaja con personas de la zona y apoya a quienes lo rodean. Estas son algunas de las formas en que Subway Chile y sus franquiciados buscan aportar a sus comunidades.</p>
+  <section class="ct-options">
+    <div class="container ct-grid">
+      <a class="ct-card ct-card--wa" href="https://wa.me/56977315562?text=Hola%20Subway%20Chile%2C%20tengo%20una%20consulta" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" width="44" height="44" aria-hidden="true"><path fill="currentColor" d="M12.04 2a9.9 9.9 0 0 0-8.5 14.98L2 22l5.17-1.5A9.9 9.9 0 1 0 12.04 2Zm0 18.1a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.07.9.92-2.99-.2-.31a8.2 8.2 0 1 1 6.83 3.73Zm4.5-6.13c-.25-.12-1.46-.72-1.69-.8-.23-.08-.39-.12-.55.12-.16.25-.63.8-.78.97-.14.16-.29.18-.53.06a6.7 6.7 0 0 1-3.34-2.92c-.25-.43.25-.4.72-1.34.08-.16.04-.3-.02-.43-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.41-.55-.42h-.47a.9.9 0 0 0-.65.3 2.74 2.74 0 0 0-.86 2.04c0 1.2.88 2.37 1 2.53.12.16 1.73 2.64 4.19 3.7 1.56.67 2.17.73 2.95.61.48-.07 1.46-.6 1.67-1.18.2-.58.2-1.07.14-1.18-.06-.1-.22-.16-.47-.28Z"/></svg>
+        <h2>Escríbenos por WhatsApp</h2>
+        <p>+56 9 7731 5562</p>
+        <span class="btn btn-wa">Abrir chat</span>
+      </a>
+      <a class="ct-card" href="#formulario">
+        <svg viewBox="0 0 24 24" width="44" height="44" aria-hidden="true"><path fill="currentColor" d="M5 3h10l4 4v14H5V3Zm2 2v14h10V8h-3V5H7Zm2 6h6v2H9v-2Zm0 4h6v2H9v-2Z"/></svg>
+        <h2>Ingresa un reclamo o sugerencia</h2>
+        <p>Completa el formulario y te responderemos por correo.</p>
+        <span class="btn btn-primary">Ir al formulario</span>
+      </a>
+    </div>
+  </section>
 
-      <h2>Empleo local</h2>
-      <p>Nuestros restaurantes contratan principalmente a personas de las comunas donde están ubicados. Para muchos jóvenes, Subway es su primer trabajo: un lugar donde aprender a atender clientes, trabajar en equipo y crecer. Si te interesa, revisa <a href="trabaja-con-nosotros.html">Empleos</a>.</p>
+  <section class="jobs-page" id="formulario">
+    <div class="container jobs-inner">
+      <form class="jobs-form" data-form="reclamos" novalidate>
+        <div class="jobs-grid">
+          <label>Nombre completo*
+            <input type="text" name="nombre" required autocomplete="name" maxlength="120">
+          </label>
+          <label>Correo electrónico*
+            <input type="email" name="email" required autocomplete="email" maxlength="120">
+          </label>
+          <label>Teléfono (opcional)
+            <input type="tel" name="telefono" autocomplete="tel" maxlength="20">
+          </label>
+          <label class="ct-local">Restaurante*
+            <input type="text" name="restaurante_busqueda" required autocomplete="off" maxlength="120" placeholder="Escribe el nombre, la dirección o la comuna" aria-autocomplete="list" aria-controls="localesList">
+            <input type="hidden" name="restaurante">
+            <ul class="ct-suggest" id="localesList" role="listbox" hidden></ul>
+            <small>Ej: "Providencia", "Mall Plaza" o el número de tu boleta.</small>
+          </label>
+          <label>Fecha de la visita*
+            <input type="date" name="fecha_visita" required>
+          </label>
+          <label>Tipo*
+            <select name="tipo" required>
+              <option value="">Selecciona una opción</option>
+              <option>Calidad del producto</option>
+              <option>Atención del personal</option>
+              <option>Tiempo de espera</option>
+              <option>Limpieza del local</option>
+              <option>Precio o cobro</option>
+              <option>Pedido por delivery</option>
+              <option>Felicitación</option>
+              <option>Sugerencia</option>
+              <option>Otro</option>
+            </select>
+          </label>
+          <label>Canal de compra*
+            <select name="canal" required>
+              <option value="">Selecciona una opción</option>
+              <option>En el local</option>
+              <option>Para llevar</option>
+              <option>Uber Eats</option>
+              <option>PedidosYa</option>
+              <option>Rappi</option>
+            </select>
+          </label>
+        </div>
+        <label>Cuéntanos qué pasó*
+          <textarea name="mensaje" rows="5" required maxlength="2000"></textarea>
+        </label>
+        <label class="jobs-check">
+          <input type="checkbox" name="consentimiento" required>
+          <span>Acepto que Subway Chile use mis datos para gestionar mi reclamo, según la <a href="privacidad.html" target="_blank">Política de Privacidad</a>.*</span>
+        </label>
+        <p class="jobs-msg" role="status" aria-live="polite"></p>
+        <button type="submit" class="btn btn-primary btn-lg">Enviar</button>
+      </form>
 
-      <h2>Emprendimiento</h2>
-      <p>Cada restaurante en Chile pertenece a un franquiciado: personas y familias que decidieron emprender con la marca. Así, el crecimiento de Subway en el país también es el crecimiento de pequeños y medianos empresarios locales.</p>
-
-      <h2>¿Tienes una propuesta?</h2>
-      <p>Si representas a una organización y quieres trabajar con nosotros, escríbenos a <a href="mailto:marketing@subwaychile.cl">marketing@subwaychile.cl</a>.</p>
-
-      <p class="legal-note">Subway® es una marca registrada de Subway IP LLC. © 2026 Subway IP LLC.</p>
+      <aside class="jobs-alt">
+        <h2>¿No recuerdas el restaurante?</h2>
+        <p>Escribe parte del nombre, la calle o la comuna y elige tu local de la lista. Si tienes la boleta, también puedes escribir el número del restaurante que aparece en ella.</p>
+        <p>Si compraste por delivery, el reclamo sobre el despacho también puedes hacerlo en la app que usaste.</p>
+      </aside>
     </div>
   </section>
 </main>
@@ -88,6 +154,8 @@
 <script src="js/templates.js"></script>
 <script src="js/main.js"></script>
 <script src="js/footer-render.js"></script>
+<script src="js/locales.js"></script>
+<script src="js/forms.js"></script>
 <script src="js/i18n.js"></script>
 <script src="js/cookies.js"></script>
 </body>

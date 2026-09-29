@@ -16,6 +16,22 @@
     return c.slice(-1) === (dv === 11 ? '0' : dv === 10 ? 'K' : String(dv));
   }
 
+  // Convierte los campos del formulario en una fila de la tabla web.<tipo>
+  function toRow(tipo, d) {
+    const nn = (v) => (v && String(v).trim()) || null;
+    if (tipo === 'reclamos') {
+      const listaCargada = (window.SUBWAY_LOCALES || []).length > 0;
+      return {
+        restaurante_numero: listaCargada ? nn(d.restaurante) : null,
+        restaurante_texto: d.restaurante_busqueda, nombre: d.nombre, email: d.email, telefono: nn(d.telefono),
+        ubicacion: nn(d.ubicacion), fecha_visita: d.fecha_visita, tipo: d.tipo, canal: d.canal, mensaje: d.mensaje, consentimiento: true,
+      };
+    }
+    const row = {};
+    Object.keys(d).forEach((k) => { row[k] = k === 'consentimiento' ? true : nn(d[k]); });
+    return row;
+  }
+
   document.querySelectorAll('form[data-form]').forEach((form) => {
     const tipo = form.dataset.form;
     const msg = form.querySelector('.jobs-msg');
@@ -30,15 +46,13 @@
       if (bad) return show(`Revisa el campo "${bad.closest('label').firstChild.textContent.replace('*', '').trim()}".`);
       const rutField = form.querySelector('[data-rut]');
       if (rutField && !validRut(rutField.value)) return show('El RUT no es válido. Revisa el número y el dígito verificador.');
-      if (location.protocol === 'file:') return show('Para enviar el formulario el sitio debe estar publicado.');
 
       const data = {};
       new FormData(form).forEach((v, k) => { data[k] = k === 'consentimiento' ? true : String(v); });
       btn.disabled = true;
       show('Enviando…', true);
       try {
-        const res = await fetch(`/api/formularios/${tipo}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
-        if (!res.ok) throw new Error(res.status);
+        await window.SB.insert(tipo, toRow(tipo, data));
         form.reset();
         show('¡Gracias! Recibimos tu mensaje y te contactaremos pronto.', true);
       } catch (err) {

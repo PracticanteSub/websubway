@@ -25,8 +25,9 @@
     (banners || []).forEach((banner) => mount.appendChild(T.ctaBanner(banner)));
   }
 
-  fetch('/api/content/home')
-    .then((res) => { if (!res.ok) throw new Error(res.status); return res.json(); })
+  window.SB.select('contenido_sitio', 'select=datos&clave=eq.home')
+    .then((rows) => { if (!rows.length) throw new Error('vacío'); return rows[0].datos; })
+    .catch(() => fetch('/api/content/home').then((res) => { if (!res.ok) throw new Error(res.status); return res.json(); }))
     .catch(() => (window.SUBWAY_CONTENT || {}).home || {})
     .then((data) => {
       renderHero(data.hero || []);

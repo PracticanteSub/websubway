@@ -470,3 +470,57 @@ a { color: inherit; text-decoration: none; }
 .jobs-form small { font-weight: 400; color: #666; }
 @media (max-width: 900px) { .fr-cards { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .fr-cards { grid-template-columns: 1fr; } }
+
+.fr-card { background: #fff; border-top: 0; box-shadow: 0 8px 24px rgba(0,0,0,.08); text-align: center; }
+.fr-icon { display: block; height: 110px; width: auto; margin: 4px auto 16px; }
+
+/* Contáctanos */
+.ct-options { padding: 48px 0 0; }
+.ct-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.ct-card { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; background: #fff; border-radius: 14px; padding: 32px 24px; box-shadow: 0 8px 24px rgba(0,0,0,.08); color: var(--sub-green); transition: transform .15s, box-shadow .15s; }
+.ct-card:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,.12); }
+.ct-card h2 { margin: 6px 0 0; font-size: 1.4rem; color: #111; }
+.ct-card p { margin: 0 0 8px; color: #555; }
+.ct-card--wa { color: #25D366; }
+.btn-wa { background: #25D366; color: #fff; }
+@media (max-width: 700px) { .ct-grid { grid-template-columns: 1fr; } }
+
+/* Buscador de restaurante */
+.ct-local { position: relative; }
+.ct-suggest { position: absolute; top: 100%; left: 0; right: 0; z-index: 30; margin: 4px 0 0; padding: 4px 0; list-style: none; background: #fff; border: 1px solid #ccc; border-radius: 6px; box-shadow: 0 8px 20px rgba(0,0,0,.12); max-height: 260px; overflow: auto; font-weight: 400; }
+.ct-suggest li { padding: 8px 12px; cursor: pointer; }
+.ct-suggest li small { display: block; color: #666; }
+.ct-suggest li[aria-selected="true"], .ct-suggest li:hover { background: #eef7f1; }
+
+/* Botones principales del encabezado */
+.hbtn { display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 20px 0 16px; border-radius: 999px;
+  font-family: var(--font-cond); font-weight: 700; font-size: .95rem; letter-spacing: .04em; text-transform: uppercase;
+  border: 2px solid transparent; transition: transform .15s ease, box-shadow .15s ease, background-color .15s ease, color .15s ease; white-space: nowrap; }
+.hb-ico { width: 18px; height: 18px; flex: none; }
+.hbtn--primary { background: var(--sub-green); color: #fff; box-shadow: 0 4px 12px rgba(0,137,56,.28); }
+.hbtn--primary .hb-ico { color: var(--sub-yellow); }
+.hbtn--primary:hover { background: var(--sub-green-dark); transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0,137,56,.35); }
+.hbtn--secondary { background: var(--sub-yellow); color: #111; box-shadow: 0 4px 12px rgba(255,198,0,.3); }
+.hbtn--secondary:hover { background: #ffd23f; transform: translateY(-1px); box-shadow: 0 6px 16px rgba(255,198,0,.4); }
+.hbtn:active { transform: translateY(0); box-shadow: none; }
+.hbtn:focus-visible { outline: 3px solid #111; outline-offset: 2px; }
+@media (max-width: 640px) {
+  .hbtn { height: 40px; padding: 0 12px; font-size: .8rem; gap: 6px; }
+  .hbtn--secondary span { display: none; }
+  .hbtn--secondary { padding: 0 11px; }
+  .hbtn--secondary::after { content: "Franquicia"; }
+}
+.header-inner .logo { flex: none; }
+.header-inner .logo img { width: auto; }
+@media (max-width: 640px) {
+  .header-inner .logo img { height: 26px; }
+  .header-actions { gap: 8px; }
+  .hbtn--primary span { font-size: .75rem; }
+}
+@media (max-width: 400px) { .hbtn--primary span { display: none; } .hbtn--primary::after { content: "Buscar"; } }
+@media (max-width: 640px) { .site-header .container { padding: 0 16px; } }
+@media (max-width: 420px) {
+  .header-inner .logo img { height: 22px; }
+  .hbtn { padding: 0 10px; gap: 5px; height: 38px; font-size: .75rem; }
+  .hb-ico { width: 16px; height: 16px; }
+}

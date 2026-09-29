@@ -23,15 +23,6 @@
     return clean.slice(-1) === expected;
   }
 
-  function readFile(file) {
-    return new Promise((resolve, reject) => {
-      const r = new FileReader();
-      r.onload = () => resolve(String(r.result).split(',')[1]);
-      r.onerror = reject;
-      r.readAsDataURL(file);
-    });
-  }
-
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const d = new FormData(form);
@@ -45,23 +36,21 @@
     if (file && file.size > MAX) return show('El CV pesa más de 5 MB. Prueba con un archivo más liviano.');
     if (file && !/\.(pdf|docx?)$/i.test(file.name)) return show('El CV debe ser PDF o Word.');
 
-    if (location.protocol === 'file:') {
-      return show('Para enviar el formulario el sitio debe estar publicado. Mientras tanto, envía tus datos a rrhh@subwaychile.cl.');
-    }
 
     btn.disabled = true;
     show('Enviando…', true);
     try {
-      const payload = {
+      let cvPath = null;
+      if (file) {
+        const ext = file.name.split('.').pop().toLowerCase();
+        cvPath = `${new Date().toISOString().slice(0, 10)}/${crypto.randomUUID()}.${ext}`;
+        await window.SB.upload('cv-postulaciones', cvPath, file);
+      }
+      await window.SB.insert('postulaciones', {
         nombre: d.get('nombre'), rut: d.get('rut'), email: d.get('email'), telefono: d.get('telefono'),
-        region: d.get('region'), comuna: d.get('comuna'), mensaje: d.get('mensaje') || '',
-        consentimiento: true,
-        cv: file ? { nombre: file.name, datos: await readFile(file) } : null,
-      };
-      const res = await fetch('/api/postulaciones', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload),
+        region: d.get('region'), comuna: d.get('comuna'), mensaje: d.get('mensaje') || null,
+        cv_path: cvPath, consentimiento: true,
       });
-      if (!res.ok) throw new Error(res.status);
       form.reset();
       show('¡Gracias! Recibimos tu postulación. Te contactaremos si hay una vacante en tu zona.', true);
     } catch (err) {
