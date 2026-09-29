@@ -28,6 +28,10 @@
     'Súper Combo por $6.700': ['Super Combo for $6,700', 'Super Combo por $6.700'],
     'Elegí tu Sub de Cerdo Mechado, Atún o Pollo Crispy + 2 acompañamientos + 1 bebida.': ['Choose your Pulled Pork, Tuna or Crispy Chicken Sub + 2 sides + 1 drink.', 'Escolha seu Sub de Porco Desfiado, Atum ou Frango Crispy + 2 acompanhamentos + 1 bebida.'],
 
+    'Sub del Día': ['Sub of the Day', 'Sub do Dia'],
+    'Cada día, una excusa distinta para volver. Disfruta tu Sub del Día a un precio especial o conviértelo a Combo del Día por $5.200.': ['A different reason to come back every day. Enjoy your Sub of the Day at a special price or make it a Combo of the Day for $5,200.', 'Todo dia, um motivo diferente para voltar. Aproveite seu Sub do Dia a um preço especial ou transforme-o em Combo do Dia por $5.200.'],
+    'Elige el de hoy': ["Choose today's", 'Escolha o de hoje'],
+
     // Tarjetas de promociones
     'Pide tus Combos Favoritos': ['Order your Favorite Combos', 'Peça seus Combos Favoritos'],
     'Elige el combo que más te gusta y disfrútalo en tu casa.': ['Pick your favorite combo and enjoy it at home.', 'Escolha o combo que você mais gosta e aproveite em casa.'],

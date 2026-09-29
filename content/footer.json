@@ -51,6 +51,10 @@
         {
           "text": "Empleos",
           "href": "trabaja-con-nosotros.html"
+        },
+        {
+          "text": "The Feed Chile",
+          "href": "https://misubwaypreview.vercel.app"
         }
       ]
     }

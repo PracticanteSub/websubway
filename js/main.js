@@ -76,6 +76,14 @@ window.initHeroCarousel = function initHeroCarousel() {
   paintPlay();
   dotsWrap.appendChild(playBtn);
 
+  // Flechas finas junto a la pausa
+  const chev = (d) => `<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="${d}" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+  prevBtn.innerHTML = chev('M15 5 8 12l7 7');
+  nextBtn.innerHTML = chev('M9 5l7 7-7 7');
+  prevBtn.classList.add('hero-arrow--inline');
+  nextBtn.classList.add('hero-arrow--inline');
+  dotsWrap.append(prevBtn, nextBtn);
+
   function goTo(index) {
     slides[current].classList.remove('is-active');
     dots[current].classList.remove('is-active');

@@ -524,3 +524,102 @@ a { color: inherit; text-decoration: none; }
   .hbtn { padding: 0 10px; gap: 5px; height: 38px; font-size: .75rem; }
   .hb-ico { width: 16px; height: 16px; }
 }
+
+/* Campo fecha igual a los demás */
+.jobs-form input[type=date] { font: inherit; font-weight: 400; padding: 10px 12px; border: 1px solid #ccc; border-radius: 6px; background: #fff; color: #222; min-height: 45px; width: 100%; box-sizing: border-box; }
+.jobs-form input[type=date]:focus { outline: 2px solid var(--sub-green); border-color: var(--sub-green); }
+
+/* Carrusel: laterales en blanco, fondo gris solo en el bloque central */
+.hero { background: #fff; }
+.hero-track { background: var(--sub-gray-light); }
+
+/* Carrusel sin fondo gris */
+.hero, .hero-track { background: #fff; }
+
+/* Encabezado estilo tarjeta: logo | divisor | enlaces */
+.site-header { background: transparent; box-shadow: none; padding: 12px 0; }
+.site-header .header-inner { background: #fff; border-radius: 6px; box-shadow: 0 8px 24px rgba(0,0,0,.10); justify-content: flex-start; gap: 24px; padding: 0 24px; min-height: 76px; }
+.header-divider { width: 1px; align-self: stretch; margin: 18px 0; background: #e2e2e2; }
+.header-actions { gap: 28px; }
+.hbtn, .hbtn--primary, .hbtn--secondary { background: none; box-shadow: none; color: #1b1b1b; height: auto; padding: 6px 0; border-radius: 0; border: 0;
+  font-family: var(--font-cond); font-weight: 700; font-size: 1.05rem; letter-spacing: .02em; text-transform: uppercase; position: relative; }
+.hbtn .hb-ico { display: none; }
+.hbtn::before { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: var(--sub-yellow); transform: scaleX(0); transform-origin: left; transition: transform .2s ease; }
+.hbtn:hover, .hbtn--primary:hover, .hbtn--secondary:hover { background: none; color: var(--sub-green); transform: none; box-shadow: none; }
+.hbtn:hover::before { transform: scaleX(1); }
+.hbtn--primary .hb-ico { color: inherit; }
+@media (max-width: 640px) {
+  .site-header .header-inner { gap: 12px; padding: 0 14px; min-height: 60px; }
+  .header-divider { margin: 14px 0; }
+  .header-actions { gap: 14px; }
+  .hbtn { font-size: .85rem; padding: 4px 0; }
+  .hbtn--primary span, .hbtn--secondary span { display: inline; }
+  .hbtn--primary::after, .hbtn--secondary::after { content: none; }
+}
+@media (max-width: 400px) { .hbtn { font-size: .75rem; } .header-actions { gap: 10px; } }
+
+/* Botones rectangulares con esquinas curvas (en todo el sitio) */
+.btn, .btn-lg, .btn-primary, .btn-light, .btn-outline, .btn-wa, .btn--black, .btn--ubereats, .btn--pedidosya, .btn--rappi,
+.ck-foot .btn, .ck-banner .btn, .jobs-form .btn { border-radius: 8px !important; }
+
+/* Banner "Ordena lo que Quieras" con fondo blanco */
+.delivery-cta.has-side-image { background: #fff; color: #1b1b1b; }
+.delivery-cta.has-side-image .section-title--light { color: #1b1b1b; }
+.delivery-cta.has-side-image p { color: #555; }
+
+/* Flechas del carrusel junto a la pausa */
+.hero-dots .hero-arrow--inline { position: static; transform: none; width: 28px; height: 28px; padding: 0; margin: 0; border: 0;
+  background: none; box-shadow: none; color: #1b1b1b; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
+.hero-dots .hero-arrow--prev.hero-arrow--inline { margin-left: 10px; }
+.hero-dots .hero-arrow--inline:hover { color: var(--sub-green); background: none; }
+.hero-dots .hero-arrow--inline:focus-visible { outline: 2px solid var(--sub-green); outline-offset: 2px; border-radius: 4px; }
+
+/* Carrusel: texto a la izquierda, imagen a la derecha; controles alineados con el texto */
+@media (min-width: 801px) {
+  .hero-slide { grid-template-columns: 1fr 480px; }
+  .hero-slide .hero-media { order: 2; }
+  .hero-slide .hero-copy { order: 1; padding: 24px 48px 56px 0; }
+  .hero-dots { left: 0; right: auto; justify-content: flex-start; bottom: 16px; }
+}
+
+/* Botones de las tarjetas de promoción: ancho completo de la tarjeta */
+.promo-body .btn { align-self: stretch; display: block; width: 100%; text-align: center; box-sizing: border-box; }
+
+/* Banner "Ordena lo que Quieras": imagen a la izquierda */
+@media (min-width: 801px) {
+  .has-side-image .delivery-inner { grid-template-columns: 1fr 1.5fr; }
+  .has-side-image .delivery-img { order: -1; justify-self: start; }
+}
+@media (min-width: 801px) {
+  .hero-dots { left: max(24px, calc((100% - (var(--max-width) - 48px)) / 2)); }
+}
+
+/* Banner con imagen de fondo negro (Series): todo el espacio del banner en negro */
+.hero-slide:has(.media-black) { background: #0d0d0d; }
+.hero-slide:has(.media-black) .hero-media { background-color: #0d0d0d; }
+.hero-slide:has(.media-black) h1 { color: #fff; }
+.hero-slide:has(.media-black) .hero-copy p { color: #d6d6d6; }
+.hero-slide:has(.media-black) .hero-terms { color: #cfcfcf; }
+@media (min-width: 801px) { .hero-slide:has(.media-black) .hero-copy { padding-left: 40px; } }
+.hero:has(.hero-slide.is-active .media-black) .hero-arrow--inline { color: #fff; }
+.hero:has(.hero-slide.is-active .media-black) .hero-dots { left: max(64px, calc((100% - (var(--max-width) - 48px)) / 2 + 40px)); }
+.hero:has(.hero-slide.is-active .media-black) .hero-dots button:not(.is-active):not(.hero-play):not(.hero-arrow--inline) { background: #8a8a8a; }
+@media (min-width: 801px) { .hero-slide .hero-copy { padding-bottom: 72px; } }
+
+/* Todas las diapositivas con la misma geometría: imagen 480x480 y controles fijos */
+@media (min-width: 801px) {
+  .hero-slide .hero-media.has-image { width: 480px; height: 480px; align-self: center; background-size: cover; background-position: center; }
+  .hero-slide .hero-copy,
+  .hero-slide:has(.media-black) .hero-copy { padding-left: 40px; }
+  .hero-dots,
+  .hero:has(.hero-slide.is-active .media-black) .hero-dots { left: max(64px, calc((100% - (var(--max-width) - 48px)) / 2 + 40px)); }
+}
+@media (min-width: 801px) {
+  .hero-slide { grid-template-rows: 480px; align-items: center; }
+  .hero-slide .hero-media.has-image { align-self: start; }
+}
+.hbtn, .hbtn--primary, .hbtn--secondary { font-weight: 400; }
+
+/* Menú superior pegado arriba, sin franja ni línea superior */
+.site-header { padding: 0 0 12px; border: 0; background: transparent; }
+.site-header .header-inner { border-radius: 0 0 6px 6px; border-top: 0; }

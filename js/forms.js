@@ -56,7 +56,16 @@
         form.reset();
         show('¡Gracias! Recibimos tu mensaje y te contactaremos pronto.', true);
       } catch (err) {
-        show('No pudimos enviar el formulario. Inténtalo de nuevo más tarde.');
+        console.error('[Formulario ' + tipo + ']', err);
+        const t = String(err && err.message || err);
+        let why = '';
+        if (/Failed to fetch|NetworkError|Load failed/i.test(t)) why = ' (sin conexión con la base de datos)';
+        else if (/PGRST106|schema must be one of|Invalid schema/i.test(t)) why = ' (el esquema "web" no está habilitado en Supabase)';
+        else if (/42P01|does not exist|PGRST205|Could not find the table/i.test(t)) why = ' (falta crear las tablas en Supabase)';
+        else if (/42501|row-level security|permission denied/i.test(t)) why = ' (permiso denegado en Supabase)';
+        else if (/23514|check constraint/i.test(t)) why = ' (algún dato no cumple el formato)';
+        const code = (t.match(/Supabase (\d+)/) || [])[1];
+        show('No pudimos enviar el formulario' + why + (code ? ' [' + code + ']' : '') + '. Inténtalo de nuevo más tarde.');
       } finally {
         btn.disabled = false;
       }

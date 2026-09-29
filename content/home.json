@@ -47,6 +47,22 @@
         "emoji": "",
         "image": "assets/img/supercombo.png"
       }
+    },
+    {
+      "id": "hero-4",
+      "eyebrow": "",
+      "title": "Sub del Día",
+      "description": "Cada día, una excusa distinta para volver. Disfruta tu Sub del Día a un precio especial o conviértelo a Combo del Día por $5.200.",
+      "ctaText": "Elige el de hoy",
+      "ctaHref": "https://restaurantes.subway.com/chile",
+      "tcApp": "",
+      "tcText": "Aplican Términos y Condiciones",
+      "tcLegal": "PROMOCIÓN VÁLIDA DESDE EL 9 DE SEPTIEMBRE DE 2026 HASTA EL 19 DE ENERO DE 2027, EXCLUSIVAMENTE EN RESTAURANTES SUBWAY® DE CHILE ADHERIDOS. EL PRECIO DE $3.100 INCLUYE UN SUB ÚNICO POR DÍA DE 15 CM. CONVERTIRLO EN ENSALADA, AGREGAR ACOMPAÑAMIENTOS, AGREGAR EXTRAS Y/O HACERLO COMBO TENDRÁ EXTRA COSTO ADICIONAL. AL AGREGAR PROTEÍNA EXTRA, EL SUB TOMA EL PRECIO DE PROTEÍNA DE MAYOR VALOR, MÁS LA PROTEÍNA DEL SUB CORRESPONDIENTE EN EL DÍA COMO EXTRA. NO VÁLIDO PARA DELIVERY NI ACUMULABLE CON OTRAS PROMOCIONES U OFERTAS. IMÁGENES CON FINES ILUSTRATIVOS. SUBWAY® ES UNA MARCA REGISTRADA DE SUBWAY IP LLC. © 2026 SUBWAY IP LLC.",
+      "media": {
+        "style": "green",
+        "emoji": "",
+        "image": "assets/img/subdeldia.png"
+      }
     }
   ],
   "promos": {
